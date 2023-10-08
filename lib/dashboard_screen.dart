@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'bottom_navigation.dart';
-import 'inventory_screen.dart';
 import 'medicine_form.dart';
 
 class DashboardScreen extends StatefulWidget {
