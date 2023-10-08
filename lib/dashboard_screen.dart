@@ -14,16 +14,12 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  int _selectedIndex = 0; // Current selected tab index
-
   void _navigateToMedicineForm(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const MedicineForm()),
     );
   }
-
- 
 
   @override
   Widget build(BuildContext context) {
