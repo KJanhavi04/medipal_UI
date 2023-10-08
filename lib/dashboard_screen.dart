@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'bottom_navigation.dart';
+import 'inventory_screen.dart';
 import 'medicine_form.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -20,6 +22,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
       MaterialPageRoute(builder: (context) => const MedicineForm()),
     );
   }
+
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -46,33 +50,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: Container(
-        color: Colors.lightBlue[100], // Set the background color
-        child: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard),
-              label: 'Dashboard',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.inventory),
-              label: 'Inventory',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-          ],
-          unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.amber[800],
-          onTap: _onTabTapped,
-        ),
-      ),
+      //bottomNavigation bar
+      bottomNavigationBar: const BottomNavigation(),
+
+      //add action button
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _navigateToMedicineForm(context); // Call the navigation function
@@ -82,30 +63,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
-  }
-
-  void _onTabTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    // You can add navigation logic here to switch between tabs.
-    // For example, you can use a switch statement to navigate to different screens.
-
-    switch (index) {
-      case 0:
-        // Navigate to Dashboard
-        break;
-      case 1:
-        // Navigate to Inventory
-        break;
-      case 2:
-        // Navigate to Profile
-        break;
-      case 3:
-        // Navigate to Settings
-        break;
-    }
   }
 
   Widget _buildCalendar(BuildContext context) {
@@ -192,36 +149,42 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Widget _buildCard(int index) {
-  final List<String> times = ['Morning', 'Noon', 'Evening', 'Night']; // Replace with your times
-  final String time = times[index % 4]; // Example: Cycle through times
+    final List<String> times = [
+      'Morning',
+      'Noon',
+      'Evening',
+      'Night'
+    ]; // Replace with your times
+    final String time = times[index % 4]; // Example: Cycle through times
 
-  return Card(
-    margin: const EdgeInsets.all(8),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            time,
-            style: const TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
+    return Card(
+      margin: const EdgeInsets.all(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              time,
+              style: const TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-        ),
-        const Divider(height: 1, color: Colors.grey),
-        ListTile(
-          leading: const Icon(Icons.medical_services, size: 48.0, color: Colors.blue),
-          title: Text(
-            'Medicine Name $index', // Replace with actual medicine name
-            style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+          const Divider(height: 1, color: Colors.grey),
+          ListTile(
+            leading: const Icon(Icons.medical_services,
+                size: 48.0, color: Colors.blue),
+            title: Text(
+              'Medicine Name $index', // Replace with actual medicine name
+              style:
+                  const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text('Quantity: $index'), // Replace with actual quantity
           ),
-          subtitle: Text('Quantity: $index'), // Replace with actual quantity
-        ),
-      ],
-    ),
-  );
-}
-
+        ],
+      ),
+    );
+  }
 }
