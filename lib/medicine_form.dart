@@ -7,6 +7,8 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
 
 class MedicineForm extends StatefulWidget {
+  const MedicineForm({super.key});
+
   @override
   _MedicineFormState createState() => _MedicineFormState();
 }
