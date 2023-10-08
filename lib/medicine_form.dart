@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
+import 'package:flutter/material.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:intl/intl.dart';
 
 class MedicineForm extends StatefulWidget {
-  const MedicineForm({super.key});
-
   @override
   _MedicineFormState createState() => _MedicineFormState();
 }
@@ -19,6 +20,9 @@ class _MedicineFormState extends State<MedicineForm> {
   TimeOfDay? _morningTime;
   TimeOfDay? _noonTime;
   TimeOfDay? _eveningTime;
+
+  DateTime? _startDate;
+  DateTime? _endDate;
 
   @override
   void dispose() {
@@ -50,6 +54,8 @@ class _MedicineFormState extends State<MedicineForm> {
 
   @override
   Widget build(BuildContext context) {
+    final dateFormat = DateFormat("yyyy-MM-dd");
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Medicine Form'),
@@ -103,6 +109,54 @@ class _MedicineFormState extends State<MedicineForm> {
                     decoration: const InputDecoration(
                       labelText: 'Reorder Level',
                     ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  const Text(
+                    'Medication Duration',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  DateTimeField(
+                    format: dateFormat,
+                    decoration: const InputDecoration(
+                      labelText: 'Start Date',
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        _startDate = value;
+                      });
+                    },
+                    onShowPicker: (context, currentValue) async {
+                      final date = await showDatePicker(
+                        context: context,
+                        firstDate: DateTime(2000),
+                        initialDate: currentValue ?? DateTime.now(),
+                        lastDate: DateTime(2101),
+                      );
+                      return date;
+                    },
+                  ),
+                  DateTimeField(
+                    format: dateFormat,
+                    decoration: const InputDecoration(
+                      labelText: 'End Date',
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        _endDate = value;
+                      });
+                    },
+                    onShowPicker: (context, currentValue) async {
+                      final date = await showDatePicker(
+                        context: context,
+                        firstDate: DateTime(2000),
+                        initialDate: currentValue ?? DateTime.now(),
+                        lastDate: DateTime(2101),
+                      );
+                      return date;
+                    },
                   ),
                   const SizedBox(height: 16.0),
                   const Text(
@@ -183,6 +237,12 @@ class _MedicineFormState extends State<MedicineForm> {
                           'reorderLevel':
                               int.tryParse(_reorderLevelController.text) ?? 0,
                         },
+                        'startDate': _startDate != null
+                            ? dateFormat.format(_startDate!)
+                            : null,
+                        'endDate': _endDate != null
+                            ? dateFormat.format(_endDate!)
+                            : null,
                       };
 
                       // Handle the form data as needed (e.g., save to Firestore)
