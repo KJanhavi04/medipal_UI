@@ -22,6 +22,8 @@ class _MedicineFormState extends State<MedicineForm> {
   DateTime? _startDate;
   DateTime? _endDate;
 
+  String? _selectedDosageType; // Stores the selected dosage type
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -53,6 +55,40 @@ class _MedicineFormState extends State<MedicineForm> {
   @override
   Widget build(BuildContext context) {
     final dateFormat = DateFormat("yyyy-MM-dd");
+
+    // Define the dropdown items for dosage type
+    final List<DropdownMenuItem<String>> dosageTypeItems = [
+      const DropdownMenuItem(
+        value: 'Liquid',
+        child: Row(
+          children: [
+            Icon(Icons.liquor),
+            SizedBox(width: 8.0),
+            Text('Liquid'),
+          ],
+        ),
+      ),
+      const DropdownMenuItem(
+        value: 'Pills',
+        child: Row(
+          children: [
+            Icon(Icons.local_hospital),
+            SizedBox(width: 8.0),
+            Text('Pills'),
+          ],
+        ),
+      ),
+      const DropdownMenuItem(
+        value: 'Injection',
+        child: Row(
+          children: [
+            Icon(Icons.usb),
+            SizedBox(width: 8.0),
+            Text('Injection'),
+          ],
+        ),
+      ),
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -89,9 +125,23 @@ class _MedicineFormState extends State<MedicineForm> {
                   TextField(
                     controller: _dosageController,
                     decoration: const InputDecoration(
-                      labelText: 'Dosage',
+                      labelText: 'Dosage Description',
                     ),
                   ),
+                  const SizedBox(height: 16.0),
+                  DropdownButtonFormField(
+                    value: _selectedDosageType,
+                    decoration: const InputDecoration(
+                      labelText: 'Type of Dosage',
+                    ),
+                    items: dosageTypeItems,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedDosageType = value as String?;
+                      });
+                    },
+                  ),
+                  
                   const SizedBox(height: 16.0),
                   TextField(
                     controller: _quantityController,
@@ -217,7 +267,8 @@ class _MedicineFormState extends State<MedicineForm> {
                       // Create a map to store the medication data
                       final Map<String, dynamic> medicationData = {
                         'name': _nameController.text,
-                        'dosage': _dosageController.text,
+                        'dosageType': _selectedDosageType,
+                        'dosageDescription': _dosageController.text,
                         'schedule': {
                           'morning': _morningTime != null
                               ? _morningTime!.format(context)

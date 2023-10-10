@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medipal_ui/welcome_screen.dart';
 import 'login_screen.dart';
+import 'register_screen.dart';
 import 'splash_screen.dart';
 
 void main() {
@@ -19,8 +20,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      //home: SplashScreen(), // Set SplashScreen as the initial route
-      home: LoginScreen(),
+      home: const SplashScreen(), // Set SplashScreen as the initial route
+      // home: const RegisterScreen(),
     );
   }
 }
