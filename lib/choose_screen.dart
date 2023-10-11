@@ -56,10 +56,10 @@ class MyCard extends StatelessWidget {
               size: 50.0,
               color: Colors.black,
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
