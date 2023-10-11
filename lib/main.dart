@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medipal_ui/navbar.dart';
 import 'package:medipal_ui/welcome_screen.dart';
 import 'choose_screen.dart';
 import 'login_screen.dart';
@@ -17,11 +18,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Medipal',
+      color: Colors.amber,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 255, 255, 255)),
+        //useMaterial3: true,
       ),
-      home: const ChooseScreen(), // Set SplashScreen as the initial route
+      home: const SplashScreen(), // Set SplashScreen as the initial route
       // home: const RegisterScreen(),
     );
   }

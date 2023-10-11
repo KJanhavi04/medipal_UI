@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'bottom_navigation.dart';
+
 class InventoryScreen extends StatelessWidget {
   const InventoryScreen({Key? key}) : super(key: key);
 
@@ -10,7 +12,9 @@ class InventoryScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Inventory'),
       ),
-      body: _buildInventoryList(), // Create the inventory list view
+      body: _buildInventoryList(),
+            bottomNavigationBar: const BottomNavigation(),
+ // Create the inventory list view
     );
   }
 

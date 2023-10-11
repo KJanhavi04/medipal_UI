@@ -39,10 +39,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
           icon: Icon(Icons.person),
           label: 'Profile',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
-        ),
       ],
       unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
       currentIndex: _selectedIndex,
@@ -72,9 +68,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
         break;
       case 2:
         // Navigate to Profile
-        break;
-      case 3:
-        // Navigate to Settings
         break;
     }
   }

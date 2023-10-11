@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ChooseScreen extends StatelessWidget {
-  const ChooseScreen({super.key});
+  const ChooseScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,16 @@ class ChooseScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                MyCard(title: 'Individual', iconData: Icons.sell, onPressed: () {  },),
-                MyCard(title: 'Dependent', iconData: Icons.usb, onPressed: () {  },),
+                MyCard(
+                  title: 'Individual',
+                  iconData: Icons.sell,
+                  onPressed: () {},
+                ),
+                MyCard(
+                  title: 'Dependent',
+                  iconData: Icons.usb,
+                  onPressed: () {},
+                ),
               ],
             ),
           ),
@@ -30,7 +38,7 @@ class ChooseScreen extends StatelessWidget {
   }
 }
 
-class MyCard extends StatelessWidget {
+class MyCard extends StatefulWidget {
   final String title;
   final IconData iconData;
   final VoidCallback onPressed; // Callback function for onPressed
@@ -38,34 +46,53 @@ class MyCard extends StatelessWidget {
   MyCard({required this.title, required this.iconData, required this.onPressed});
 
   @override
+  _MyCardState createState() => _MyCardState();
+}
+
+class _MyCardState extends State<MyCard> {
+  bool isHovered = false;
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed, // Use the provided onPressed callback
-      child: Container(
-        width: 150,
-        height: 150,
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              iconData,
-              size: 50.0,
-              color: Colors.black,
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
+    return MouseRegion(
+      onEnter: (event) {
+        setState(() {
+          isHovered = true;
+        });
+      },
+      onExit: (event) {
+        setState(() {
+          isHovered = false;
+        });
+      },
+      child: GestureDetector(
+        onTap: widget.onPressed,
+        child: Container(
+          width: 150,
+          height: 150,
+          decoration: BoxDecoration(
+            color: isHovered ? Colors.grey.withOpacity(0.7) : Colors.white.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                widget.iconData,
+                size: 50.0,
                 color: Colors.black,
               ),
-            ),
-          ],
+              const SizedBox(height: 8.0),
+              Text(
+                widget.title,
+                style: const TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
