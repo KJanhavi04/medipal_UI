@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:medipal_ui/choose_screen.dart';
 import 'dashboard_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const DashboardScreen(),
+          builder: (context) => const ChooseScreen(),
         ),
       );
     });

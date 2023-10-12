@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:medipal_ui/login_screen.dart';
+import 'package:medipal_ui/login_screen_dependent.dart';
+import 'package:medipal_ui/register_screen_dependent.dart';
 
-import 'register_screen.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreenDependent extends StatelessWidget {
+  const WelcomeScreenDependent({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +65,7 @@ class WelcomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
+                        builder: (context) => const LoginScreenDependent(),
                       ));
                 },
                 style: ElevatedButton.styleFrom(
@@ -93,7 +95,7 @@ class WelcomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const RegisterScreen(),
+                        builder: (context) => const RegisterScreenDependent(),
                       ));
                 },
                 style: TextButton.styleFrom(

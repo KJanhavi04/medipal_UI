@@ -3,6 +3,7 @@ import 'package:medipal_ui/navbar.dart';
 import 'package:medipal_ui/welcome_screen.dart';
 import 'choose_screen.dart';
 import 'login_screen.dart';
+import 'profile_screen.dart';
 import 'register_screen.dart';
 import 'splash_screen.dart';
 
@@ -20,10 +21,10 @@ class MyApp extends StatelessWidget {
       title: 'Medipal',
       color: Colors.amber,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 255, 255, 255)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 255, 255, 255)),
         //useMaterial3: true,
       ),
-      home: const SplashScreen(), // Set SplashScreen as the initial route
+      home: const ProfileScreen(), // Set SplashScreen as the initial route
       // home: const RegisterScreen(),
     );
   }

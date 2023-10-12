@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:medipal_ui/welcome_screen.dart';
+import 'package:medipal_ui/welcome_screen_dependent.dart';
 
 class ChooseScreen extends StatelessWidget {
   const ChooseScreen({Key? key});
@@ -22,12 +24,24 @@ class ChooseScreen extends StatelessWidget {
                 MyCard(
                   title: 'Individual',
                   iconData: Icons.sell,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WelcomeScreen(),
+                        ));
+                  },
                 ),
                 MyCard(
                   title: 'Dependent',
                   iconData: Icons.usb,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const WelcomeScreenDependent(),
+                        ));
+                  },
                 ),
               ],
             ),
@@ -43,7 +57,8 @@ class MyCard extends StatefulWidget {
   final IconData iconData;
   final VoidCallback onPressed; // Callback function for onPressed
 
-  MyCard({required this.title, required this.iconData, required this.onPressed});
+  MyCard(
+      {required this.title, required this.iconData, required this.onPressed});
 
   @override
   _MyCardState createState() => _MyCardState();
@@ -71,7 +86,9 @@ class _MyCardState extends State<MyCard> {
           width: 150,
           height: 150,
           decoration: BoxDecoration(
-            color: isHovered ? Colors.grey.withOpacity(0.7) : Colors.white.withOpacity(0.5),
+            color: isHovered
+                ? Colors.grey.withOpacity(0.7)
+                : Colors.white.withOpacity(0.5),
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Column(
